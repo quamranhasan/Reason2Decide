@@ -117,7 +117,7 @@ For SFT:
 ```bash
 python src/sft/inference.py \
   --model_dir PATH_TO_MODEL \
-  --input_file PATH_TO_INPUT_FILE \
+  --input_csv PATH_TO_INPUT_FILE \
   --batch_size BATCH_SIZE
 ```
 
