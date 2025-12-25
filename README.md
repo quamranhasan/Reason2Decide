@@ -126,5 +126,5 @@ For r2d:
 torchrun --nproc_per_node=4 src/r2d/inference.py \
   --model_dir PATH_TO_MODEL \
   --input_csv PATH_TO_INPUT_FILE \
-  --output_csv /home/hmquamra/projects/aip-rgoebel/hmquamra/thes/github/src/r2d/preds.csv
+  --output_csv PATH_TO_OUTPUT_FILE
 ```
