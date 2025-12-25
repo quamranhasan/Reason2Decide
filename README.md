@@ -54,7 +54,7 @@ Contains code for Reason2Decide training and inference:
 
 `train_stage2.py`: Joint Training for both rationale and prediction
 
-`inference.py`: R2D inference and evaluation 
+`inference.py`: r2d inference and evaluation 
 
 ---
 
@@ -117,6 +117,7 @@ torchrun --nproc_per_node=NUM_GPUS src/r2d/train_stage2.py \
     --output_dir OUTPUT_DIR \
     --max_input_length MAX_INPUT_TOKENS
 ```
+Please allow sufficient max_steps to ensure training till convergence. Overtraining is avoided due to early stopping.
 
 Inference Script Usage:
 
