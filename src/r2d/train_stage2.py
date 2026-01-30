@@ -54,7 +54,7 @@ def preprocess_function(examples, tokenizer, max_input_length):
     }
 
 # ---------------- Data Collator ----------------
-def make_dss_data_collator(tokenizer, eval_mode=False):
+def make_r2d_data_collator(tokenizer, eval_mode=False):
     def collator(features):
         if eval_mode:
             # Eval: prediction only for eval loss
@@ -161,7 +161,7 @@ class RationaleLoggingCallback(TrainerCallback):
             print(f"Predicted Rationale: {expl_text}\n")
 
 # ---------------- Custom Trainer ----------------
-class DSS_Trainer(Seq2SeqTrainer):
+class R2D_Trainer(Seq2SeqTrainer):
     def __init__(self, alpha=0.5, alpha_warmup_steps=1000,
                  pred_label_transition_steps=3000,
                  train_collator=None, eval_collator=None, tokenizer=None,
@@ -270,7 +270,7 @@ def main():
     parser.add_argument("--max_steps", type=int, default=30000)
     parser.add_argument("--alpha", type=float, default=0.7)
     parser.add_argument('--grad_steps', type=int, default=1)
-    parser.add_argument("--seed", type=int, default=123)
+    parser.add_argument("--seed", type=int, default=42)
     
     args = parser.parse_args()
     set_seed(args.seed)
@@ -339,17 +339,10 @@ def main():
         gradient_accumulation_steps=args.grad_steps,
     )
 
-    train_collator = make_dss_data_collator(tokenizer, eval_mode=False)
-    eval_collator = make_dss_data_collator(tokenizer, eval_mode=True)
+    train_collator = make_r2d_data_collator(tokenizer, eval_mode=False)
+    eval_collator = make_r2d_data_collator(tokenizer, eval_mode=True)
 
-    # Monkey-patch torch.load to always allow full unpickling for this run
-    # old_torch_load = torch.load
-    # def torch_load_weights_only_false(*args, **kwargs):
-    #     kwargs['weights_only'] = False
-    #     return old_torch_load(*args, **kwargs)
-    # torch.load = torch_load_weights_only_false
-
-    trainer = DSS_Trainer(
+    trainer = R2D_Trainer(
         alpha=args.alpha,
         alpha_warmup_steps=alpha_warmup_steps,
         model=model,
