@@ -1,5 +1,5 @@
 # Reason2Decide
-This repository contains the code and processed datasets accompanying our work on Reason2Decide (https://arxiv.org/pdf/2512.20074)
+This repository contains the code and processed datasets accompanying our work on Reason2Decide (https://lrec.elra.info/lrec2026-main-181)
 
 ## Repository Structure
 
@@ -142,14 +142,17 @@ torchrun --nproc_per_node=4 src/r2d/inference.py \
 If you find this repository useful, please consider citing:
 
 ```bash
-@misc{hasan2025reason2deciderationaledrivenmultitasklearning,
-      title={Reason2Decide: Rationale-Driven Multi-Task Learning}, 
-      author={H M Quamran Hasan and Housam Khalifa Bashier and Jiayi Dai and Mi-Young Kim and Randy Goebel},
-      year={2025},
-      eprint={2512.20074},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2512.20074}, 
+@inproceedings{hasan-etal-2026-reason2decide,
+  title = {Reason2Decide: Rationale-Driven Multi-Task Learning},
+  author = {Hasan, H M Quamran and Bashier, Housam Khalifa and Dai, Jiayi and Kim, Mi-Young and Goebel, Randy},
+  booktitle = {Proceedings of the Fifteenth Language Resources and Evaluation Conference (LREC 2026)},
+  month = {May},
+  year = {2026},
+  pages = {2309--2322},
+  address = {Palma, Mallorca, Spain},
+  publisher = {European Language Resources Association (ELRA)},
+  doi = {10.63317/3uo797cnah93},
+  abstract = {Despite the wide adoption of Large Language Models (LLM)s, clinical decision support systems face a critical challenge: achieving high predictive accuracy while generating explanations aligned with those predictions. Current approaches suffer from exposure bias, leading to misaligned explanations. We propose Reason2Decide, a two-stage training framework that addresses key challenges in self-rationalization, including exposure bias and task separation. In Stage-1, our model is trained on rationale generation, while in Stage-2, we jointly train on label prediction and rationale generation, applying scheduled sampling to gradually transition from conditioning on gold labels to model predictions. We evaluate Reason2Decide on three medical datasets, including a proprietary triage dataset and public biomedical QA datasets. Across model sizes, Reason2Decide outperforms other fine-tuned baselines and some zero-shot LLMs in prediction (F1) and rationale fidelity (BERTScore, BLEU, LLM-as-a-Judge). In triage, Reason2Decide is rationale source-robust across LLM-generated, nurse-authored, and nurse-post-processed rationales. In our experiments, while using only LLM-generated rationales in Stage-1, Reason2Decide outperforms other fine-tuned variants. This indicates that LLM-generated rationales are suitable for pretraining models, reducing reliance on human annotations. Remarkably, Reason2Decide achieves these gains with models 40x smaller than contemporary foundation models, making clinical reasoning more accessible for resource-constrained deployments while still providing explainable decision support.}
 }
 ```
 
